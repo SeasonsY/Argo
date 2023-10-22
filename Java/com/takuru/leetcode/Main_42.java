@@ -2,7 +2,6 @@ package com.takuru.leetcode;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Stack;
 
 /**
  * 接雨水，单调栈解法
@@ -25,8 +24,12 @@ class Solution_42 {
         int result = 0;
         Deque<Integer> stack = new LinkedList<>();
         for (int i = 0; i < height.length; i++) {
-
+            if (stack.isEmpty() || height[stack.peek()] > height[i]) {
+                stack.push(i);
+            } else {
+                result += stack.poll();
+            }
         }
-        return 0;
+        return result;
     }
 }
